@@ -1,3 +1,5 @@
 # Robokata
 
-work in progress.
+A PHP-based CLI utility app, based on Robo.
+
+
