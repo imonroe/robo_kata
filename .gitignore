@@ -1,3 +1,5 @@
 .env
-vendor/
-vendor/.git
+/vendor/
+/vendor/.git
+/output/*
+!/output/.gitignore

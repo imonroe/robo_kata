@@ -4,13 +4,11 @@ namespace imonroe\robokata;
 
 use \Dotenv\Dotenv;
 
-class RoboKataPrototype extends \Robo\Tasks {
-
-    protected $dotenv;
+class RoboKataPrototype extends \Robo\Tasks
+{
 
     public function __construct()
     {
-
     }
 
     public function env($key)
@@ -32,15 +30,15 @@ class RoboKataPrototype extends \Robo\Tasks {
      * @return string
      *   Response to the question.
      */
-    protected function askQuestion($question, $default = '', $required = FALSE) {
+    protected function askQuestion($question, $default = '', $required = false)
+    {
         if ($default) {
-        $response = $this->askDefault($question, $default);
-        }
-        else {
-        $response = $this->ask($question);
+            $response = $this->askDefault($question, $default);
+        } else {
+            $response = $this->ask($question);
         }
         if ($required && !$response) {
-        return $this->askQuestion($question, $default, $required);
+            return $this->askQuestion($question, $default, $required);
         }
         return $response;
     }
@@ -51,7 +49,8 @@ class RoboKataPrototype extends \Robo\Tasks {
      *
      *
      */
-    protected function robokata(){
+    protected function robokata()
+    {
         return $this->taskExec('php robokata.php')
             ->option('verbose')
             ->option('no-interaction');
@@ -64,12 +63,13 @@ class RoboKataPrototype extends \Robo\Tasks {
      * @param String $cmd The shell command to execute.
      * @return String The output of the shell command execution
      */
-    protected function execWithMessage($cmd) {
+    protected function execWithMessage($cmd)
+    {
         $output = '';
         $diff_msg = [];
         exec($cmd, $diff_msg, $status);
-        if ( (int)$status == 0 ){
-            foreach ($diff_msg as $line){
+        if ((int)$status == 0) {
+            foreach ($diff_msg as $line) {
                 $output .= $line . PHP_EOL;
             }
             return $output;
@@ -77,5 +77,4 @@ class RoboKataPrototype extends \Robo\Tasks {
             throw new \Exception('execWithMessage() returned a status of '.$status.' when it tried to execute a command.');
         }
     }
-
 }

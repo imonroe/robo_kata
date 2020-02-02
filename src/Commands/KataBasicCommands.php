@@ -7,7 +7,8 @@ class KataBasicCommands extends \imonroe\robokata\RoboKataPrototype
     /**
      * @command katabasic:env
      */
-    public function getEnv(){
+    public function getEnv()
+    {
         $environment = var_export($_ENV, true);
         $this->say($environment);
     }
